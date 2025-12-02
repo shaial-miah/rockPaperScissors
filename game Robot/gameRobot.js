@@ -6,23 +6,34 @@ const rockIcon = document.getElementById("rockIcon");
 const paperIcon = document.getElementById("paperIcon");
 const scissorIcon = document.getElementById("scissorIcon");
 
-/* toggle selection for rock selection */
+// select 1 icon only
+
+// first put all icons into an array
+const icons = [rockIcon, paperIcon, scissorIcon];
+
+const selectOneIconOnly = (icon) => {
+
+    for (let i = 0; i < icons.length; i++) {
+        icons[i].classList.remove("selected");
+    };
+    
+    icon.classList.toggle("selected");
+};
+
 selectRockButton.addEventListener("click", () => {
 
-    rockIcon.classList.toggle("selected");
+    selectOneIconOnly(rockIcon);
 
 });
 
-/* toggle selection for paper selection */
 selectPaperButton.addEventListener("click", () => {
 
-    paperIcon.classList.toggle("selected");
+    selectOneIconOnly(paperIcon);
 
 });
 
-/* toggle selection for scissor selection */
 selectScissorButton.addEventListener("click", () => {
 
-    scissorIcon.classList.toggle("selected");
+    selectOneIconOnly(scissorIcon);
 
 });
