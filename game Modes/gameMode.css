@@ -1,0 +1,37 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 100%;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: monospace;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #10162F;
+    color: white;
+  }
+
+  svg {
+    fill: white;
+    height: 200px;
+    width: 200px;
+    padding: 10px;
+  }
+
+  svg:hover {
+    border: solid;
+    border-radius: 20px;
+    cursor: pointer;
+  }

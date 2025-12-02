@@ -1,0 +1,82 @@
+/* Modern global reset */
+
+
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    height: 100%;
+  }
+  
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: monospace;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-color: #10162F;
+    color: white;
+  }
+
+  
+
+  /*title*/
+
+  #title {
+    font-size: 50px;
+  }
+
+  .rockPaperScissorsIconsContainer {
+    margin-bottom: 20px;
+  }
+
+  .rockPaperScissorsIconsContainer svg {
+    padding: 10px;
+    fill: white;
+    height: 80px;
+    width: 80px;
+    border: solid;
+    border-radius: 100px;
+
+  }
+
+
+  /* Name input section */ 
+
+  .nameInputSection {
+
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+  }
+  
+  .nameInputSection input, button {
+    width: 400px;
+    font-size: 20px;
+  }
+
+  /*Leaderboard section */
+
+  .leaderboard {
+
+    display: grid;
+  }
+
+  #crownIcon {
+    height: 15px;
+    width: 15px;
+    fill: gold;
+  }
+
+  #winner {
+    color: green;
+  }
