@@ -70,3 +70,12 @@ body {
   border-radius: 5px;
   border-width: 2px;
 }
+
+/*border colour when tied*/
+
+.selectionTie {
+  border: solid;
+  border-color: turquoise;
+  border-radius: 5px;
+  border-width: 2px;
+}

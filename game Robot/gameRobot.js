@@ -52,24 +52,44 @@ selectScissorButton.addEventListener("click", () => {
 // These numbers will be our index numbers for our icons array.
 const randomNumber = Math.floor(Math.random() * 3);
 const selections = ['rock', 'paper', 'scissors'];
+let robotChoice;
 
 
 const randomSelection = () => {
 
     if (selections[randomNumber] === 'rock') {
         rockIcon.classList.add("selectedRobot");
+        robotChoice = 'rock';
+
+        if (userChoice === 'rock' && robotChoice === 'rock') {
+            rockIcon.classList.add("selectionTie");
+            document.getElementById("result").innerText = "TIE"
+        }
     }
 
     if (selections[randomNumber] === 'paper') {
         paperIcon.classList.add("selectedRobot");
+        robotChoice = 'paper';
+        if (userChoice === 'paper' && robotChoice === 'paper') {
+            paperIcon.classList.add("selectionTie");
+            document.getElementById("result").innerText = "TIE"
+        }
     }
 
     if (selections[randomNumber] === 'scissors') {
         scissorIcon.classList.add("selectedRobot");
+        robotChoice = 'scissors';
+        if (userChoice === 'scissors' && robotChoice === 'scissors') {
+            paperIcon.classList.add("selectionTie");
+            document.getElementById("result").innerText = "TIE"
+        }
     }
 
 };
 
 setTimeout(() => {
     randomSelection();
-}, 3000);
+}, 10000);
+
+/* if user choice and computer choice is the same border needs
+to be a different colour. */
