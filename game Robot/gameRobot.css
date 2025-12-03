@@ -55,11 +55,18 @@ body {
   background-color: darkcyan;
 }
 
-/*rock paper scissors icon checked*/
+/*rock paper scissors icon selected for user. */
 
 .selected {
   border: solid;
   border-color: orange;
+  border-radius: 5px;
+  border-width: 2px;
+}
+
+.selectedRobot {
+  border: solid;
+  border-color: blueviolet;
   border-radius: 5px;
   border-width: 2px;
 }
