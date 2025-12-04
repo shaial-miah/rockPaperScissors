@@ -89,12 +89,14 @@ const randomSelection = () => {
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Robot";
             robotScore = 1;
             robotScoreResult.innerText = robotScore.toString();
+            nextRoundButtonAppears();
         }
 
         if (userChoice === 'paper' && robotChoice === 'rock') {
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Player 1";
             playerScore = 1;
             playerScoreResult.innerText = playerScore.toString();
+            nextRoundButtonAppears();
         }
 
         if (userChoice === 'rock' && robotChoice === 'rock') {
@@ -118,12 +120,14 @@ to be a different colour. */
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Robot";
             robotScore = 1;
             robotScoreResult.innerText = robotScore.toString();
+            nextRoundButtonAppears();
         }
 
         if (userChoice === 'scissors' && robotChoice === 'paper') {
             document.getElementById("result").innerText = "Scissors cuts Paper, 1 point to Player 1";
             playerScore = 1;
             playerScoreResult.innerText = playerScore.toString();
+            nextRoundButtonAppears();
         }
     }
 
@@ -140,20 +144,35 @@ to be a different colour. */
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Player 1";
             playerScore = 1;
             playerScoreResult.innerText = playerScore.toString();
+            nextRoundButtonAppears();
         }
 
         if (userChoice === 'paper' && robotChoice === 'scissors') {
             document.getElementById("result").innerText = "Scissors cuts Rock, 1 point to Robot";
             robotScore = 1;
             robotScoreResult.innerText = robotScore.toString();
+            nextRoundButtonAppears();
         }
     }
 
 };
 
-// this runs the robots selection  after 10 seconds.
+/* next round button appears */
 
-/* setTimeout(() => {
-    randomSelection();
-}, 10000); */
+const nextRoundButtonAppears = () => {
 
+    let nextRoundSection = document.getElementById("nextRoundSection");
+
+    if (playerScore !== robotScore) {
+
+        let nextRoundButton = document.createElement("button");
+        nextRoundButton.classList.add("nextRoundButton")
+        nextRoundButton.innerText = "Next round";
+
+        // this hides the selections element after the initial round.
+        document.getElementsByClassName('selections')[0].style.display = "none";
+
+        nextRoundSection.appendChild(nextRoundButton);
+
+    }
+};

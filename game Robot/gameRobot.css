@@ -26,7 +26,7 @@ body {
 }
 
 #roundNumber {
-  display: none;
+ display: none;
 }
 
 .playerSection {
@@ -78,4 +78,17 @@ body {
   border-color: turquoise;
   border-radius: 5px;
   border-width: 2px;
+}
+
+/*next round button style*/
+
+.nextRoundButton {
+  margin-top: 20px;
+  border-style: none;
+  width: 100px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: brown;
+  color: white;
+  cursor: pointer;
 }
