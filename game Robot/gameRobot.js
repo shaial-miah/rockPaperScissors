@@ -6,6 +6,16 @@ const rockIcon = document.getElementById("rockIcon");
 const paperIcon = document.getElementById("paperIcon");
 const scissorIcon = document.getElementById("scissorIcon");
 
+// score result update.
+
+let playerScoreResult = document.getElementById("playerScoreResult");
+let robotScoreResult = document.getElementById("robotScoreResult");
+
+// player or robot score
+
+let playerScore = 0;
+let robotScore = 0;
+
 // select 1 icon only
 
 // first put all icons into an array
@@ -30,9 +40,10 @@ selectRockButton.addEventListener("click", () => {
 
     /* we can put the randomSelection function here so it runs after the
     user selects a button first */
-}, setTimeout(() => {
-    randomSelection();
-}, 3000));
+    setTimeout(() => {
+        randomSelection();
+    }, 3000);
+});
 
 selectPaperButton.addEventListener("click", () => {
 
@@ -40,19 +51,23 @@ selectPaperButton.addEventListener("click", () => {
 
     userChoice = 'paper';
 
-}, setTimeout(() => {
-    randomSelection();
-}, 3000));
+    setTimeout(() => {
+        randomSelection();
+    }, 3000);
+
+});
 
 selectScissorButton.addEventListener("click", () => {
 
     selectOneIconOnly(scissorIcon);
 
-    userChoice = 'scissor';
+    userChoice = 'scissors';
 
-}, setTimeout(() => {
-    randomSelection();
-}, 3000));
+    setTimeout(() => {
+        randomSelection();
+    }, 3000);
+
+});
 
 // Random robot selection
 
@@ -70,15 +85,21 @@ const randomSelection = () => {
         robotChoice = 'rock';
 
         /* logic which determines which player wins & gets the point  */
-        if (userChoice === 'scissor' && robotChoice === 'rock') {
-            document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Robot"
+        if (userChoice === 'scissors' && robotChoice === 'rock') {
+            document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Robot";
+            robotScore = 1;
+            robotScoreResult.innerText = robotScore.toString();
         }
 
         if (userChoice === 'paper' && robotChoice === 'rock') {
-            document.getElementById("result").innerText = "Paper eats Rock, 1 point to Player 1"
+            document.getElementById("result").innerText = "Paper eats Rock, 1 point to Player 1";
+            playerScore = 1;
+            playerScoreResult.innerText = playerScore.toString();
         }
 
         if (userChoice === 'rock' && robotChoice === 'rock') {
+            /* if user choice and computer choice is the same border needs
+to be a different colour. */
             rockIcon.classList.add("selectionTie");
             document.getElementById("result").innerText = "TIE"
         }
@@ -94,11 +115,15 @@ const randomSelection = () => {
         }
 
         if (userChoice === 'rock' && robotChoice === 'paper') {
-            document.getElementById("result").innerText = "Paper eats Rock, 1 point to Robot"
+            document.getElementById("result").innerText = "Paper eats Rock, 1 point to Robot";
+            robotScore = 1;
+            robotScoreResult.innerText = robotScore.toString();
         }
 
-        if (userChoice === 'scissor' && robotChoice === 'paper') {
-            document.getElementById("result").innerText = "Scissors cuts Paper, 1 point to Player 1"
+        if (userChoice === 'scissors' && robotChoice === 'paper') {
+            document.getElementById("result").innerText = "Scissors cuts Paper, 1 point to Player 1";
+            playerScore = 1;
+            playerScoreResult.innerText = playerScore.toString();
         }
     }
 
@@ -106,17 +131,21 @@ const randomSelection = () => {
         scissorIcon.classList.add("selectedRobot");
         robotChoice = 'scissors';
 
-        if (userChoice === 'scissor' && robotChoice === 'scissors') {
+        if (userChoice === 'scissors' && robotChoice === 'scissors') {
             scissorIcon.classList.add("selectionTie");
             document.getElementById("result").innerText = "TIE"
         }
 
         if (userChoice === 'rock' && robotChoice === 'scissors') {
-            document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Player 1"
+            document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Player 1";
+            playerScore = 1;
+            playerScoreResult.innerText = playerScore.toString();
         }
 
         if (userChoice === 'paper' && robotChoice === 'scissors') {
-            document.getElementById("result").innerText = "Scissors cuts Rock, 1 point to Robot"
+            document.getElementById("result").innerText = "Scissors cuts Rock, 1 point to Robot";
+            robotScore = 1;
+            robotScoreResult.innerText = robotScore.toString();
         }
     }
 
@@ -128,5 +157,3 @@ const randomSelection = () => {
     randomSelection();
 }, 10000); */
 
-/* if user choice and computer choice is the same border needs
-to be a different colour. */
