@@ -99,14 +99,24 @@ const randomSelection = () => {
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Robot";
             robotScore++;
             localStorage.setItem("robotScore", robotScore);
+
+            if (playerScore === 3 || robotScore === 3) {
+                endGame();
+            } else {
             nextRoundButtonAppears();
+            };
         }
 
         if (userChoice === 'paper' && robotChoice === 'rock') {
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Player 1";
             playerScore++;
             localStorage.setItem("playerScore", playerScore);
+            
+            if (playerScore === 3 || robotScore === 3) {
+                endGame();
+            } else {
             nextRoundButtonAppears();
+            };
         }
 
         if (userChoice === 'rock' && robotChoice === 'rock') {
@@ -150,14 +160,24 @@ to be a different colour. */
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Robot";
             robotScore++;
             localStorage.setItem("robotScore", robotScore);
+            
+            if (playerScore === 3 || robotScore === 3) {
+                endGame();
+            } else {
             nextRoundButtonAppears();
+            };
         }
 
         if (userChoice === 'scissors' && robotChoice === 'paper') {
             document.getElementById("result").innerText = "Scissors cuts Paper, 1 point to Player 1";
             playerScore++;
             localStorage.setItem("playerScore", playerScore);
+            
+            if (playerScore === 3 || robotScore === 3) {
+                endGame();
+            } else {
             nextRoundButtonAppears();
+            };
         }
     }
 
@@ -184,14 +204,24 @@ to be a different colour. */
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Player 1";
             playerScore++;
             localStorage.setItem("playerScore", playerScore);
+            
+            if (playerScore === 3 || robotScore === 3) {
+                endGame();
+            } else {
             nextRoundButtonAppears();
+            };
         }
 
         if (userChoice === 'paper' && robotChoice === 'scissors') {
             document.getElementById("result").innerText = "Scissors cuts Rock, 1 point to Robot";
             robotScore++;
             localStorage.setItem("robotScore", robotScore);
+            
+            if (playerScore === 3 || robotScore === 3) {
+                endGame();
+            } else {
             nextRoundButtonAppears();
+            };
         }
     }
 
@@ -228,8 +258,26 @@ const nextRoundButtonAppears = () => {
 const endGame = () => {
 
     let gameOverMessage = document.createElement("p");
+    let returnHomeButton = document.createElement("button");
+
     gameOverMessage.innerText = "Game Over...";
+    returnHomeButton.innerText = "Return to home"
+
+    document.getElementsByClassName("selections")[0].style.display = "none";
+    document.getElementsByClassName("iconSection")[0].style.display = "none";
+    document.getElementsByClassName("playerSection")[0].style.display = "none";
+    document.getElementById("result").style.display = "none";
 
     document.body.appendChild(gameOverMessage);
+    document.body.appendChild(returnHomeButton);
+
+    // clicking returnHomeButton takes us back to start.
+
+    returnHomeButton.addEventListener("click", () => {
+        window.location.href = "/index/index.html"
+    })
+
+    localStorage.removeItem("playerScore");
+    localStorage.removeItem("robotScore");
 
 };
