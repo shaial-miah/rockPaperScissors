@@ -87,14 +87,14 @@ const randomSelection = () => {
         /* logic which determines which player wins & gets the point  */
         if (userChoice === 'scissors' && robotChoice === 'rock') {
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Robot";
-            robotScore = 1;
+            robotScore++;
             robotScoreResult.innerText = robotScore.toString();
             nextRoundButtonAppears();
         }
 
         if (userChoice === 'paper' && robotChoice === 'rock') {
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Player 1";
-            playerScore = 1;
+            playerScore++;
             playerScoreResult.innerText = playerScore.toString();
             nextRoundButtonAppears();
         }
@@ -138,14 +138,14 @@ to be a different colour. */
 
         if (userChoice === 'rock' && robotChoice === 'paper') {
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Robot";
-            robotScore = 1;
+            robotScore++;
             robotScoreResult.innerText = robotScore.toString();
             nextRoundButtonAppears();
         }
 
         if (userChoice === 'scissors' && robotChoice === 'paper') {
             document.getElementById("result").innerText = "Scissors cuts Paper, 1 point to Player 1";
-            playerScore = 1;
+            playerScore++;
             playerScoreResult.innerText = playerScore.toString();
             nextRoundButtonAppears();
         }
@@ -172,14 +172,14 @@ to be a different colour. */
 
         if (userChoice === 'rock' && robotChoice === 'scissors') {
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Player 1";
-            playerScore = 1;
+            playerScore++;
             playerScoreResult.innerText = playerScore.toString();
             nextRoundButtonAppears();
         }
 
         if (userChoice === 'paper' && robotChoice === 'scissors') {
             document.getElementById("result").innerText = "Scissors cuts Rock, 1 point to Robot";
-            robotScore = 1;
+            robotScore++;
             robotScoreResult.innerText = robotScore.toString();
             nextRoundButtonAppears();
         }
