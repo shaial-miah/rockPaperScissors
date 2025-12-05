@@ -11,10 +11,20 @@ const scissorIcon = document.getElementById("scissorIcon");
 let playerScoreResult = document.getElementById("playerScoreResult");
 let robotScoreResult = document.getElementById("robotScoreResult");
 
-// player or robot score
 
-let playerScore = 0;
-let robotScore = 0;
+
+// we use parseInt() to convert the string into an integer
+// getItem() gets the value for the key 'playerScore' or 'robotScore' or if there
+// is no value, the value is 0 (this will be the case for a new game)
+
+let playerScore = parseInt(localStorage.getItem("playerScore")) || 0;
+let robotScore = parseInt(localStorage.getItem("robotScore")) || 0;
+
+// this updates the score board
+robotScoreResult.innerText = robotScore;
+playerScoreResult.innerText = playerScore;
+
+
 
 // select 1 icon only
 
@@ -88,14 +98,14 @@ const randomSelection = () => {
         if (userChoice === 'scissors' && robotChoice === 'rock') {
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Robot";
             robotScore++;
-            robotScoreResult.innerText = robotScore.toString();
+            localStorage.setItem("robotScore", robotScore);
             nextRoundButtonAppears();
         }
 
         if (userChoice === 'paper' && robotChoice === 'rock') {
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Player 1";
             playerScore++;
-            playerScoreResult.innerText = playerScore.toString();
+            localStorage.setItem("playerScore", playerScore);
             nextRoundButtonAppears();
         }
 
@@ -139,14 +149,14 @@ to be a different colour. */
         if (userChoice === 'rock' && robotChoice === 'paper') {
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Robot";
             robotScore++;
-            robotScoreResult.innerText = robotScore.toString();
+            localStorage.setItem("robotScore", robotScore);
             nextRoundButtonAppears();
         }
 
         if (userChoice === 'scissors' && robotChoice === 'paper') {
             document.getElementById("result").innerText = "Scissors cuts Paper, 1 point to Player 1";
             playerScore++;
-            playerScoreResult.innerText = playerScore.toString();
+            localStorage.setItem("playerScore", playerScore);
             nextRoundButtonAppears();
         }
     }
@@ -173,14 +183,14 @@ to be a different colour. */
         if (userChoice === 'rock' && robotChoice === 'scissors') {
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Player 1";
             playerScore++;
-            playerScoreResult.innerText = playerScore.toString();
+            localStorage.setItem("playerScore", playerScore);
             nextRoundButtonAppears();
         }
 
         if (userChoice === 'paper' && robotChoice === 'scissors') {
             document.getElementById("result").innerText = "Scissors cuts Rock, 1 point to Robot";
             robotScore++;
-            robotScoreResult.innerText = robotScore.toString();
+            localStorage.setItem("robotScore", robotScore);
             nextRoundButtonAppears();
         }
     }
@@ -193,7 +203,7 @@ const nextRoundButtonAppears = () => {
 
     let nextRoundSection = document.getElementById("nextRoundSection");
 
-    if (playerScore !== robotScore) {
+    if (playerScore !== robotScore || playerScore == robotScore) {
 
         let nextRoundButton = document.createElement("button");
         nextRoundButton.classList.add("nextRoundButton")
@@ -213,3 +223,13 @@ const nextRoundButtonAppears = () => {
     }
 };
 
+// end game
+
+const endGame = () => {
+
+    let gameOverMessage = document.createElement("p");
+    gameOverMessage.innerText = "Game Over...";
+
+    document.body.appendChild(gameOverMessage);
+
+};
