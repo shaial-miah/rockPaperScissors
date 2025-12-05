@@ -103,7 +103,17 @@ const randomSelection = () => {
             /* if user choice and computer choice is the same border needs
 to be a different colour. */
             rockIcon.classList.add("selectionTie");
-            document.getElementById("result").innerText = "TIE"
+            document.getElementById("result").innerText = "TIE";
+
+            if (document.getElementById("result").innerText = "TIE") {
+
+                /* if the result is tie, the selections object is removed to prevent further selections
+                the browser is also refreshed. */
+                document.getElementsByClassName("selections")[0].style.display = "none";
+                setTimeout(() => {
+                    location.reload()
+                }, 3000)
+            }
         }
     }
 
@@ -113,7 +123,17 @@ to be a different colour. */
 
         if (userChoice === 'paper' && robotChoice === 'paper') {
             paperIcon.classList.add("selectionTie");
-            document.getElementById("result").innerText = "TIE"
+            document.getElementById("result").innerText = "TIE";
+
+            if (document.getElementById("result").innerText = "TIE") {
+
+                /* if the result is tie, the selections object is removed to prevent further selections
+                the browser is also refreshed. */
+                document.getElementsByClassName("selections")[0].style.display = "none";
+                setTimeout(() => {
+                    location.reload()
+                }, 3000)
+            }
         }
 
         if (userChoice === 'rock' && robotChoice === 'paper') {
@@ -137,7 +157,17 @@ to be a different colour. */
 
         if (userChoice === 'scissors' && robotChoice === 'scissors') {
             scissorIcon.classList.add("selectionTie");
-            document.getElementById("result").innerText = "TIE"
+            document.getElementById("result").innerText = "TIE";
+
+            if (document.getElementById("result").innerText = "TIE") {
+
+                /* if the result is tie, the selections object is removed to prevent further selections
+                the browser is also refreshed. */
+                document.getElementsByClassName("selections")[0].style.display = "none";
+                setTimeout(() => {
+                    location.reload()
+                }, 3000)
+            }
         }
 
         if (userChoice === 'rock' && robotChoice === 'scissors') {
@@ -174,5 +204,12 @@ const nextRoundButtonAppears = () => {
 
         nextRoundSection.appendChild(nextRoundButton);
 
+        /* clicking the next round button refreshes the page for the next round
+ */
+        nextRoundButton.addEventListener("click", () => {
+            location.reload();
+        })
+
     }
 };
+
