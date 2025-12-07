@@ -1,32 +1,77 @@
 let playButton = document.getElementById("playButton");
 let inputField = document.getElementById("inputName");
 
-const createNewPlayer = () => {
+let players = JSON.parse(localStorage.getItem("players")) || [];
 
-     // obtain input value from input field.
-     let inputName = inputField.value.trim();
-     localStorage.setItem("playerName", inputName);
-     
-     let tableRow = document.createElement("tr");
+const savePlayersToLocalStorage = () => {
 
-     let tableData = document.createElement("td");
+    let inputName = inputField.value.trim();
 
-     tableData.innerHTML = inputName;
+    if (inputName === "") {
+        return
+    };
 
-     let span = document.createElement("span");
-     
-     span.classList.add("points");
+    // json.parse() converts a JSON string into a real javascript value.
 
-     span.innerText = "0";
+    /* Here we use localStorage to get the key "players" and their values, however, if
+    there is none, we assign players to an empty array, here is where we will save our player objects. */
 
-     // construct the element
+    // we need to assign a new player object for all new players.
+    let newPlayer = {
+        name: inputName,
+        point: 0
+    };
 
-     tableRow.appendChild(tableData);
+    // push this new player object onto our players array.
 
-     tableRow.appendChild(span);
+    players.push(newPlayer);
 
-     document.getElementById("leaderboardTable").appendChild(tableRow);
+    // we need to save this to our local storage again.
 
+    // JSON.stringify converts javascript real values into JSON strings.
+
+    localStorage.setItem("players", JSON.stringify(players));
+
+    // we then need to render our players onto our ui.
+
+    // run the render players function here:
+
+    renderPlayers(players);
+
+    inputField.value = "";
+};
+
+const renderPlayers = (players) => {
+
+    const section = document.getElementsByClassName("leaderboard")[0];
+    section.classList.add("leaderboard");
+    const table = document.getElementById("leaderboardTable");
+    table.innerHTML = "";
+
+    // here we need to render each player object in the players array above into our ui.
+
+    // use a for loop to loop through each item.
+
+    for (let i = 0; i < players.length; i++) {
+
+        const row = document.createElement("tr");
+        const nameCell = document.createElement("td");
+
+        nameCell.innerHTML = players[i].name;
+
+        const pointCell = document.createElement("td");
+        pointCell.innerHTML = players[i].point;
+
+        // construct the elements.
+
+        row.appendChild(nameCell);
+        row.appendChild(pointCell);
+
+        table.appendChild(row);
+
+        section.appendChild(table);
+        
+    };
 };
 
 playButton.addEventListener("click", ()=> {
@@ -35,8 +80,22 @@ playButton.addEventListener("click", ()=> {
         window.alert("Enter your name to proceed: ")
     } else {
 
-        createNewPlayer();
+        savePlayersToLocalStorage();
 
-       //  window.location.href = "/game Modes/gameMode.html";
+       window.location.href = "/game Modes/gameMode.html";
     }
 });
+
+window.addEventListener("load", () => {
+    let players = JSON.parse(localStorage.getItem("players")) || [];
+    renderPlayers(players);
+
+});
+
+let resetLeaderboardBtn = document.getElementsByClassName("resetLeaderBoard")[0];
+
+resetLeaderboardBtn.addEventListener("click", () => {
+    localStorage.removeItem("players");
+    location.reload(); // optional: refresh the page
+});
+
