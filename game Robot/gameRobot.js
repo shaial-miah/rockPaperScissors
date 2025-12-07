@@ -99,6 +99,7 @@ const randomSelection = () => {
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Robot";
             robotScore++;
             localStorage.setItem("robotScore", robotScore);
+            robotScoreResult.innerText = robotScore;
 
             if (playerScore === 3 || robotScore === 3) {
                 endGame();
@@ -111,6 +112,7 @@ const randomSelection = () => {
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Player 1";
             playerScore++;
             localStorage.setItem("playerScore", playerScore);
+            playerScoreResult.innerText = playerScore;
             
             if (playerScore === 3 || robotScore === 3) {
                 endGame();
@@ -160,6 +162,7 @@ to be a different colour. */
             document.getElementById("result").innerText = "Paper eats Rock, 1 point to Robot";
             robotScore++;
             localStorage.setItem("robotScore", robotScore);
+            robotScoreResult.innerText = robotScore;
             
             if (playerScore === 3 || robotScore === 3) {
                 endGame();
@@ -172,6 +175,7 @@ to be a different colour. */
             document.getElementById("result").innerText = "Scissors cuts Paper, 1 point to Player 1";
             playerScore++;
             localStorage.setItem("playerScore", playerScore);
+            playerScoreResult.innerText = playerScore;
             
             if (playerScore === 3 || robotScore === 3) {
                 endGame();
@@ -204,6 +208,7 @@ to be a different colour. */
             document.getElementById("result").innerText = "Rock crushes Scissors, 1 point to Player 1";
             playerScore++;
             localStorage.setItem("playerScore", playerScore);
+            playerScoreResult.innerText = playerScore;
             
             if (playerScore === 3 || robotScore === 3) {
                 endGame();
@@ -216,6 +221,7 @@ to be a different colour. */
             document.getElementById("result").innerText = "Scissors cuts Rock, 1 point to Robot";
             robotScore++;
             localStorage.setItem("robotScore", robotScore);
+            robotScoreResult.innerText = robotScore;
             
             if (playerScore === 3 || robotScore === 3) {
                 endGame();
@@ -253,19 +259,20 @@ const nextRoundButtonAppears = () => {
     }
 };
 
-// end game
+// end game function
+
+let playerLeaderBoardPoint = 0;
+let robotLeaderBoardPoint = 0;
 
 const endGame = () => {
 
     let gameOverMessage = document.createElement("p");
     let returnHomeButton = document.createElement("button");
 
-    gameOverMessage.innerText = "Game Over...";
     returnHomeButton.innerText = "Return to home"
 
     document.getElementsByClassName("selections")[0].style.display = "none";
     document.getElementsByClassName("iconSection")[0].style.display = "none";
-    document.getElementsByClassName("playerSection")[0].style.display = "none";
     document.getElementById("result").style.display = "none";
 
     document.body.appendChild(gameOverMessage);
@@ -275,7 +282,15 @@ const endGame = () => {
 
     returnHomeButton.addEventListener("click", () => {
         window.location.href = "/index/index.html"
-    })
+    });
+
+    if (playerScore > robotScore) {
+        gameOverMessage.innerText = "Game Over...Shaial wins 10 points!";
+        playerLeaderBoardPoint = playerLeaderBoardPoint + 10;
+    } else if (robotScore > playerScore) {
+        gameOverMessage.innerText = "Game Over...Robot Wins 10 points!";
+        robotLeaderBoardPoint = robotLeaderBoardPoint + 10;
+    }
 
     localStorage.removeItem("playerScore");
     localStorage.removeItem("robotScore");
