@@ -67,8 +67,11 @@ html {
   /*Leaderboard section */
 
   .leaderboard {
-
     display: grid;
+  }
+
+  .leaderboard td {
+    width: 50%;
   }
 
   #crownIcon {
@@ -79,4 +82,20 @@ html {
 
   #winner {
     color: green;
+  }
+
+  /*leaderboard reset button*/
+
+  .resetLeaderBoard {
+
+    background-color:aquamarine;
+    border: none;
+    border-style: none;
+    border-radius: 5px;
+    width: 25%;
+    font-size: 15px;
+    justify-self: center;
+    margin-top: 10px;
+    cursor: pointer;
+
   }
