@@ -22,6 +22,17 @@ const savePlayersToLocalStorage = () => {
         point: 0
     };
 
+    
+    /* loop through the players array, if a player already exists
+    log an Error to the console. */
+    for (let i = 0; i < players.length; i++) {
+
+        if (inputName === players[i].name) {
+            console.log(new Error("player already exits"));
+            return;
+        } 
+    }
+
     // push this new player object onto our players array.
 
     players.push(newPlayer);
@@ -82,7 +93,7 @@ playButton.addEventListener("click", ()=> {
 
         savePlayersToLocalStorage();
 
-       window.location.href = "/game Modes/gameMode.html";
+       // window.location.href = "/game Modes/gameMode.html";
     }
 });
 
