@@ -265,6 +265,42 @@ const nextRoundButtonAppears = () => {
     }
 };
 
+
+
+// change name for current player.
+
+const displayCurrentPlayer = () => {
+    let span = document.createElement('span');
+    span.innerText = playerScore + " / 3"
+    let displayPlayer = document.getElementById("currentPlayer");
+
+    displayPlayer.innerText = currentPlayer + ": ";
+
+    displayPlayer.appendChild(span);
+};
+
+// load the current player on webpage load.
+
+window.addEventListener("load", ()=> {
+    displayCurrentPlayer();
+});
+
+// add points to player and save to local storage.
+
+const addPointsToPlayer = () => {
+    let players = obtainPlayers();
+
+    for (let i = 0; i < players.length; i++) {
+
+        if (players[i].name === currentPlayer) {
+            players[i].point += 10;
+        }
+    }
+
+    localStorage.setItem("players", JSON.stringify(players));
+}
+
+
 // end game function
 
 let playerLeaderBoardPoint = 0;
@@ -292,7 +328,7 @@ const endGame = () => {
 
     if (playerScore > robotScore) {
         gameOverMessage.innerText = "Game Over..."+ currentPlayer + " wins 10 points!";
-        playerLeaderBoardPoint = playerLeaderBoardPoint + 10;
+        addPointsToPlayer();
     } else if (robotScore > playerScore) {
         gameOverMessage.innerText = "Game Over...Robot Wins 10 points!";
         robotLeaderBoardPoint = robotLeaderBoardPoint + 10;
@@ -302,21 +338,3 @@ const endGame = () => {
     localStorage.removeItem("robotScore");
 
 };
-
-// change name for current player.
-
-const displayCurrentPlayer = () => {
-    let span = document.createElement('span');
-    span.innerText = playerScore + " / 3"
-    let displayPlayer = document.getElementById("currentPlayer");
-
-    displayPlayer.innerText = currentPlayer + ": ";
-
-    displayPlayer.appendChild(span);
-};
-
-// load the current player on webpage load.
-
-window.addEventListener("load", ()=> {
-    displayCurrentPlayer();
-});

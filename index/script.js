@@ -93,9 +93,10 @@ if (playButton) {
         } else {
     
             savePlayersToLocalStorage();
+            window.location.href = "/game Modes/gameMode.html";
         };
 
-        window.location.href = "/game Modes/gameMode.html";
+        
     });
 }
 
