@@ -1,3 +1,5 @@
+import { obtainPlayers } from "../index/script.js";
+
 const selectRockButton = document.getElementById("selectRockBtn");
 const selectPaperButton = document.getElementById("selectPaperBtn");
 const selectScissorButton = document.getElementById("selectScissorBtn");
@@ -10,6 +12,9 @@ const scissorIcon = document.getElementById("scissorIcon");
 
 let playerScoreResult = document.getElementById("playerScoreResult");
 let robotScoreResult = document.getElementById("robotScoreResult");
+
+// current player from index.js
+let currentPlayer = obtainPlayers()[obtainPlayers().length-1].name;
 
 
 
@@ -233,6 +238,7 @@ to be a different colour. */
 
 };
 
+
 /* next round button appears */
 
 const nextRoundButtonAppears = () => {
@@ -285,7 +291,7 @@ const endGame = () => {
     });
 
     if (playerScore > robotScore) {
-        gameOverMessage.innerText = "Game Over...Shaial wins 10 points!";
+        gameOverMessage.innerText = "Game Over..."+ currentPlayer + " wins 10 points!";
         playerLeaderBoardPoint = playerLeaderBoardPoint + 10;
     } else if (robotScore > playerScore) {
         gameOverMessage.innerText = "Game Over...Robot Wins 10 points!";
@@ -296,3 +302,21 @@ const endGame = () => {
     localStorage.removeItem("robotScore");
 
 };
+
+// change name for current player.
+
+const displayCurrentPlayer = () => {
+    let span = document.createElement('span');
+    span.innerText = playerScore + " / 3"
+    let displayPlayer = document.getElementById("currentPlayer");
+
+    displayPlayer.innerText = currentPlayer + ": ";
+
+    displayPlayer.appendChild(span);
+};
+
+// load the current player on webpage load.
+
+window.addEventListener("load", ()=> {
+    displayCurrentPlayer();
+});

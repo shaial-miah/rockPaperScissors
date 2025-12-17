@@ -85,28 +85,38 @@ const renderPlayers = (players) => {
     };
 };
 
-playButton.addEventListener("click", ()=> {
+if (playButton) {
+    playButton.addEventListener("click", ()=> {
 
-    if (inputField.value === "") {
-        window.alert("Enter your name to proceed: ")
-    } else {
+        if (inputField.value === "") {
+            window.alert("Enter your name to proceed: ")
+        } else {
+    
+            savePlayersToLocalStorage();
+        };
 
-        savePlayersToLocalStorage();
-
-       // window.location.href = "/game Modes/gameMode.html";
-    }
-});
+        window.location.href = "/game Modes/gameMode.html";
+    });
+}
 
 window.addEventListener("load", () => {
-    let players = JSON.parse(localStorage.getItem("players")) || [];
+    players = JSON.parse(localStorage.getItem("players")) || [];
     renderPlayers(players);
 
 });
 
 let resetLeaderboardBtn = document.getElementsByClassName("resetLeaderBoard")[0];
 
-resetLeaderboardBtn.addEventListener("click", () => {
-    localStorage.removeItem("players");
-    location.reload(); // optional: refresh the page
-});
+if (resetLeaderboardBtn) {
+    resetLeaderboardBtn.addEventListener("click", () => {
+        localStorage.removeItem("players");
+        location.reload(); // optional: refresh the page
+    });
+}
+
+// obtain players
+
+export const obtainPlayers = () => {
+    return JSON.parse(localStorage.getItem("players")) || [];
+};
 
