@@ -3,6 +3,9 @@ let inputField = document.getElementById("inputName");
 
 let players = JSON.parse(localStorage.getItem("players")) || [];
 
+let playerExists = false;
+let currentPlayer = null;
+
 const savePlayersToLocalStorage = () => {
 
     let inputName = inputField.value.trim();
@@ -28,14 +31,20 @@ const savePlayersToLocalStorage = () => {
     for (let i = 0; i < players.length; i++) {
 
         if (inputName === players[i].name) {
-            console.log(new Error("player already exits"));
-            return;
-        } 
+            playerExists = true;
+            currentPlayer = players[i].name;
+            console.log(currentPlayer);
+        };
     }
 
-    // push this new player object onto our players array.
+    if (playerExists === false) {
 
-    players.push(newPlayer);
+        // push this new player object onto our players array.
+        players.push(newPlayer);
+        currentPlayer = newPlayer.name;
+        console.log(currentPlayer);
+
+        };
 
     // we need to save this to our local storage again.
 
@@ -93,7 +102,7 @@ if (playButton) {
         } else {
     
             savePlayersToLocalStorage();
-            window.location.href = "/game Modes/gameMode.html";
+            // window.location.href = "/game Modes/gameMode.html";
         };
 
         
