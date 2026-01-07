@@ -1,4 +1,5 @@
 import { obtainCurrentPlayer } from "../index/script.js";
+import { obtainPlayers } from "../index/script.js";
 
 const selectRockButton = document.getElementById("selectRockBtn");
 const selectPaperButton = document.getElementById("selectPaperBtn");
@@ -303,8 +304,6 @@ const addPointsToPlayer = () => {
 
 // end game function
 
-let playerLeaderBoardPoint = 0;
-let robotLeaderBoardPoint = 0;
 
 const endGame = () => {
 
@@ -331,7 +330,6 @@ const endGame = () => {
         addPointsToPlayer();
     } else if (robotScore > playerScore) {
         gameOverMessage.innerText = "Game Over...Robot Wins 10 points!";
-        robotLeaderBoardPoint = robotLeaderBoardPoint + 10;
     }
 
     localStorage.removeItem("playerScore");
