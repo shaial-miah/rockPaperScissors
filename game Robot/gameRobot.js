@@ -1,4 +1,4 @@
-import { obtainPlayers } from "../index/script.js";
+import { obtainCurrentPlayer } from "../index/script.js";
 
 const selectRockButton = document.getElementById("selectRockBtn");
 const selectPaperButton = document.getElementById("selectPaperBtn");
@@ -14,7 +14,7 @@ let playerScoreResult = document.getElementById("playerScoreResult");
 let robotScoreResult = document.getElementById("robotScoreResult");
 
 // current player from index.js
-let currentPlayer = obtainPlayers()[obtainPlayers().length-1].name;
+let currentPlayer = obtainCurrentPlayer();
 
 
 
